@@ -1,0 +1,32 @@
+{
+  "name": "influencer-detector-back",
+  "version": "1.0.0",
+  "description": "API to access Influencer Detector analysis system.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dtoledo23/influencer-detector-back.git"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "spark",
+    "influencer",
+    "detector"
+  ],
+  "author": "Diego Toledo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dtoledo23/influencer-detector-back/issues"
+  },
+  "homepage": "https://github.com/dtoledo23/influencer-detector-back#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1"
+  }
+}
