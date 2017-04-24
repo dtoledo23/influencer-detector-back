@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
 // API
-app.use("/api", routes);
+app.use(routes);
 
 const server = app.listen(config.port);
 const host = server.address().address;

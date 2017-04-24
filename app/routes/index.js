@@ -2,11 +2,10 @@ const router = require("express").Router();
 const checkIfExists = require('../pageStatus/cassandraStatus');
 const Long = require('cassandra-driver').types.Long;
 const getFacebookId = require('../pageStatus/fbStatus');
-const go = require('node-go-require');
-const getCrawlerGo = require('../../../../../go/src/github.com/dtoledo23/influencer-detector-crawler/vendor/crawler/facebook/callAPIHelpers.go');
+const rp = require('request-promise');
 
 // Define API routes.
-router.route("/page/status")
+router.route("/status")
     .get(async(req, res) => {
         let status = {};
 
@@ -33,6 +32,25 @@ router.route("/page/status")
         res.json(status);
     });
 
+router.route("/page")
+    .post((req, res) => {
+        const options = {
+            method: 'POST',
+            uri: process.env.CRAWLER_HOST + "/page",
+            json: true // Automatically stringifies the body to JSON 
+        };
+        let promises = [];
+        console.log(req.body);
+        req.body.forEach((pageInfo) => {
+            options.body = pageInfo;
+            promises.push(rp(options).catch(console.error));
+        });
+        Promise.all(promises)
+            .then((result) => {
+                res.status(200).send("OK");
+            })
+            .catch(res.status(500).send);
+    });
 
 
 module.exports = router;
