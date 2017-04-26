@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const checkIfExists = require('../pageStatus/cassandraStatus');
+const getCategories = require('../pageStatus/cassandraCategories');
 const Long = require('cassandra-driver').types.Long;
 const getFacebookId = require('../pageStatus/fbStatus');
 const rp = require('request-promise');
@@ -51,26 +52,18 @@ router.route("/page")
             })
             .catch(res.status(500).send);
     });
-// router.route("/categories")
-//     .post((req, res) => {
-//         const options = {
-//             method: 'POST',
-//             uri: process.env.CRAWLER_HOST + "/categories",
-//             json: true
-//         };
-//         let promises = [];
-//         console.log(req.body);
-//         req.body.forEach((pageInfo) => {
-//             options.body = pageInfo;
-//             promises.push(rp(options).catch(console.error));
-//         });
-//         Promise.all(promises)
-//             .then((result) => {
-//                 res.status(200).json(result);
-//             })
-//             //Regresar lista de categorias
-//             //
 
-//     });
+router.route("/categories")
+    .post((req, res) => {
+        getCategories(req.body)
+            .then((result) => {
+                res.status(200).json(result);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).send(err);
+            })
+
+    });
 
 module.exports = router;
