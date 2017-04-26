@@ -1,5 +1,5 @@
 // Load variables from .env & Set default node enviroment to development.
-require('dotenv').config()
+require('dotenv').load()
 
 // Dependencies
 const express = require('express');

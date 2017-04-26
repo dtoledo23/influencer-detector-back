@@ -5,8 +5,8 @@ let client;
 
 function connect() {
     client = new cassandra.Client({
-        contactPoints: ['127.0.0.1'],
-        keyspace: 'influencer_detector'
+        contactPoints: process.env.CASSANDRA_IP_ADDRESSES.split(","),
+        keyspace: process.env.CASSANDRA_KEYSPACE,
     });
 
     client.connect(function(err) {

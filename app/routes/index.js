@@ -51,6 +51,26 @@ router.route("/page")
             })
             .catch(res.status(500).send);
     });
+// router.route("/categories")
+//     .post((req, res) => {
+//         const options = {
+//             method: 'POST',
+//             uri: process.env.CRAWLER_HOST + "/categories",
+//             json: true
+//         };
+//         let promises = [];
+//         console.log(req.body);
+//         req.body.forEach((pageInfo) => {
+//             options.body = pageInfo;
+//             promises.push(rp(options).catch(console.error));
+//         });
+//         Promise.all(promises)
+//             .then((result) => {
+//                 res.status(200).json(result);
+//             })
+//             //Regresar lista de categorias
+//             //
 
+//     });
 
 module.exports = router;
