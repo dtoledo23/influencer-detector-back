@@ -47,8 +47,10 @@ router.route("/analyze")
         console.log(req.body);
         const { category, pages } = req.body;
         pages.forEach((pageInfo) => {
-            options.body = pageInfo;
-            console.log("Crawling", pageInfo)
+            let id = pageInfo.id;
+            let depth = parseInt(pageInfo.depth, 10);
+            options.body = {id, depth};
+            console.log("Crawling", options.body)
             promises.push(rp(options)
             .then(console.log)
             .catch(console.error));
