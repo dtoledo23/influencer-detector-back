@@ -125,6 +125,10 @@ const processResults = async(results) => {
 }
 
 const fetchExtraPageInfo = (jobNodeResult, index) => {
+    if (jobNodeResult.length != 2) {
+        return {};
+    }
+    
     const id = jobNodeResult[1];
     const score = jobNodeResult[0];
     console.log("Id:", jobNodeResult, " score:", score);
