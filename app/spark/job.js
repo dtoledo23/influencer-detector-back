@@ -153,7 +153,7 @@ const fetchExtraPageInfo = (jobNodeResult, index) => {
             console.log("Here id", id)
             return FB.api(
                     `/${id}/picture/`,
-                    'GET', { "redirect": 0, "type": "normal" })
+                    'GET', { "redirect": 0, "type": "large" })
                 .then(picture => {
                     withoutPicture.profile_picture = picture.data.url;
                     return withoutPicture
