@@ -55,6 +55,7 @@ router.route("/page")
 
 router.route("/categories")
     .post((req, res) => {
+        console.log(JSON.stringify(req.body, null, 2))
         getCategories(req.body)
             .then((result) => {
                 res.status(200).json(result);
