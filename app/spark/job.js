@@ -111,7 +111,9 @@ const processResults = async(results) => {
     let numEdges = results[2];
     let topFive = []
 
-    for (let i = 0; i < 10; i++) {
+    let count = results[3].length 
+    count = count < 10 ? count : 10;
+    for (let i = 0; i < count; i++) {
         let result = await fetchExtraPageInfo(results[3][i], i)
         topFive.push(result);
     }
@@ -128,7 +130,7 @@ const fetchExtraPageInfo = (jobNodeResult, index) => {
     if (jobNodeResult.length != 2) {
         return {};
     }
-    
+
     const id = jobNodeResult[1];
     const score = jobNodeResult[0];
     console.log("Id:", jobNodeResult, " score:", score);
