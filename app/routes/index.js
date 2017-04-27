@@ -48,7 +48,10 @@ router.route("/analyze")
         const { category, pages } = req.body;
         pages.forEach((pageInfo) => {
             options.body = pageInfo;
-            promises.push(rp(options).catch(console.error));
+            console.log("Crawling", pageInfo)
+            promises.push(rp(options)
+            .then(console.log)
+            .catch(console.error));
         });
         Promise.all(promises)
             .then(() => {
