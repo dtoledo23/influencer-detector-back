@@ -111,17 +111,22 @@ const processResults = async(results) => {
     let numEdges = results[2];
     let topFive = []
 
+    let avgLikes = 0;
     let count = results[3].length 
     count = count < 10 ? count : 10;
     for (let i = 0; i < count; i++) {
         let result = await fetchExtraPageInfo(results[3][i], i)
         topFive.push(result);
+        avgLikes += result.likes
     }
+
+    avgLikes /= count;
 
     return {
         "category": category,
         "number_nodes": numNodes,
         "number_edges": numEdges,
+        "number_likes": avgLikes,
         "top_five": topFive,
     }
 }
