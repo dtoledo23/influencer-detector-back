@@ -6,7 +6,6 @@ const checkIfExists = (id) => {
     console.log(typeof id);
     return client.execute("SELECT id, name FROM nodes WHERE id = ?;", [id])
         .then(result => {
-            console.log(result);
             return result.rowLength != 0;
         })
         .catch((err) => {
