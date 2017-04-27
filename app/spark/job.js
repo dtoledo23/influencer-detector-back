@@ -111,7 +111,7 @@ const processResults = async(results) => {
     let numEdges = results[2];
     let topFive = []
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 10; i++) {
         let result = await fetchExtraPageInfo(results[3][i], i)
         topFive.push(result);
     }
@@ -152,7 +152,10 @@ const fetchExtraPageInfo = (jobNodeResult, index) => {
                     withoutPicture.profile_picture = picture.data.url;
                     return withoutPicture
                 })
-                .catch(console.error)
+                .catch((err) => {
+                    console.error(err)
+                    return {}
+                })
         })
 }
 
